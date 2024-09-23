@@ -1,12 +1,14 @@
 import { Accion } from "./accion";
 
-class MinHeap {
+export class MinHeap {
     private heap: Accion[];
     private n: number; 
+    private name:string;
 
-    constructor(size: number) {
+    constructor(size: number,name:string) {
         this.heap = new Array(size + 1);
         this.n = 0;
+        this.name = name;
     }
 
     public checkMin(): Accion {
@@ -18,6 +20,9 @@ class MinHeap {
         
     }
 
+    public getNombre(){
+        return this.name;
+    }
     public getQuantity(): number {
         return this.n;
     }
@@ -32,7 +37,7 @@ class MinHeap {
 
     private swap(i: number): void {
         let father: number = Math.floor(i / 2);
-        while (i > 1 && this.heap[father].getPrioridad() > this.heap[i].getPrioridad()) {
+        while (i > 1 && this.heap[father].getPrecio() > this.heap[i].getPrecio()) {
             let temp: Accion = this.heap[father];
             this.heap[father] = this.heap[i];
             this.heap[i] = temp;
@@ -53,13 +58,13 @@ class MinHeap {
         let max: Accion = this.heap[1];
         
         this.heap[1] = this.heap[this.n];
-        this.heap[this.n] = new Accion("Completada",0);
+        this.heap[this.n] = new Accion("Completada",0,0);
         this.n--;
         
         this.sink(1); 
-        return "Realizando " + max.show();
+        return "Realizando " //max.show();
     }
-
+    /*
     public showAll():void{
         console.log("\nMonticulo: ")
         for (let i = 1; i < this.n + 1; i++) {
@@ -68,13 +73,13 @@ class MinHeap {
 
         console.log("Christian Villegas - 1592623")
     }
-
+    */
     private sink(i: number): void {
         while (2*i <= this.n) {
             let j: number = 2*i; 
-            if (j < this.n && this.heap[j].getPrioridad() > this.heap[j+1].getPrioridad())
+            if (j < this.n && this.heap[j].getPrecio() > this.heap[j+1].getPrecio())
                 j++; 
-            if (this.heap[i].getPrioridad() <= this.heap[j].getPrioridad())
+            if (this.heap[i].getPrecio() <= this.heap[j].getPrecio())
                 break;
             let temp: Accion = this.heap[i];
             this.heap[i] = this.heap[j];
@@ -85,7 +90,7 @@ class MinHeap {
     }
 }
 
-let minHeap: MinHeap = new MinHeap(7);
+//let minHeap: MinHeap = new MinHeap(7);
 /*
 minHeap.insert(new Task("Calificar laboratorio 1", 1))
 minHeap.insert(new Task("Calificar laboratorio 2", 4))
@@ -93,8 +98,9 @@ minHeap.insert(new Task("Reunirse con facultad de ingeniería", 1))
 minHeap.insert(new Task("Preparar la siguiente clase", 2))
 minHeap.insert(new Task("Definir Laboratorio 3", 3))
 minHeap.insert(new Task("Inscribirse a capacitación general", 1))
-*/
+
 console.log(minHeap.doNext())
 console.log(minHeap.doNext())
 
 minHeap.showAll()
+*/

@@ -1,11 +1,13 @@
 import { Accion } from "./accion";
-class MaxHeap {
+export class MaxHeap {
     public heap: Accion[];
     private n: number; // n = cantidad de elementos ingresados
+    private name:string;
 
-    constructor(size: number) {
+    constructor(size: number, name:string) {
         this.heap = new Array(size + 1);
         this.n = 0;
+        this.name = name;
     }
 
     public checkMax(): Accion {
@@ -16,6 +18,9 @@ class MaxHeap {
         return this.n == 0;
     }
 
+    public getNombre(){
+        return this.name;
+    }
     public getQuantity(): number {
         return this.n;
     }
@@ -30,7 +35,7 @@ class MaxHeap {
 
     private swap(i: number): void {
         let father: number = Math.floor(i / 2);
-        while (i > 1 && this.heap[father].getPrioridad < this.heap[i].getPrioridad) {
+        while (i > 1 && this.heap[father].getPrecio() < this.heap[i].getPrecio()) {
             let temp: Accion = this.heap[father];
             this.heap[father] = this.heap[i];
             this.heap[i] = temp;
@@ -50,19 +55,19 @@ class MaxHeap {
         let max: Accion = this.heap[1];
         //console.log("El this.heap[this.n, es: " + this.heap[this.n])
         this.heap[1] = this.heap[this.n];
-        this.heap[this.n] = new Accion("Completada",0);
+        this.heap[this.n] = new Accion("Completada",0,0);
         this.n--;
         //console.log("Este es el que después es el máximo supuesto " + this.heap[1])
         this.sink(1); // Procedimiento que reestructura el árbol AVL*/
-        return "Realizando " + max.show();
+        return "Realizando " //+ max.show();
     }
 
     private sink(i: number): void {
         while (2*i <= this.n) {
             let j: number = 2*i; // empezamos asumiendo que el hijo izquierdo es el mayor
-            if (j < this.n && this.heap[j].getPrioridad < this.heap[j+1].getPrioridad)
+            if (j < this.n && this.heap[j].getPrecio() < this.heap[j+1].getPrecio())
                 j++; // cambia a hijo derecho si este es el mayor
-            if (this.heap[i].getPrioridad >= this.heap[j].getPrioridad)
+            if (this.heap[i].getPrecio() >= this.heap[j].getPrecio())
                 break;
             // Hacemos intercambio burbuja entre los nodos para que el mayor quede en la raíz
             let temp: Accion = this.heap[i];
@@ -75,7 +80,7 @@ class MaxHeap {
 }
 
 // main
-let myHeap: MaxHeap = new MaxHeap(7);
+//let myHeap: MaxHeap = new MaxHeap(7);
 /*
 myHeap.insert(4);
 myHeap.insert(5);
@@ -85,7 +90,8 @@ myHeap.insert(1);
 myHeap.insert(3);
 myHeap.insert(9);
 */
-
+/*
 console.log("El número más grande es " + myHeap.getMax());
 console.log("El número más grande es " + myHeap.getMax());
 console.log("El número más grande es " + myHeap.getMax());
+*/

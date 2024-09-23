@@ -1,18 +1,35 @@
+import { MaxHeap } from "./maxheap";
+import { MinHeap } from "./minheap";
+
 export class Accion{
     private nombre:string;
     private precio:number;
-    private prioridad:number;
+    private cantidad:number;
 
-    constructor(nombre:string, precio:number){
+    
+
+    constructor(nombre:string,precio:number, cantidad:number){
         this.nombre = nombre;
         this.precio = precio;
+        this.cantidad = cantidad;
     }
 
-    public getPrioridad(){
-        return this.prioridad
+
+    public getNombre():string{
+        return this.nombre;
     }
 
-    public show(){
-        return `Accion: ${this.nombre}, precio: ${this.precio}, prioridad: ${this.prioridad}`
+    public getPrecio(){
+        return this.precio;
     }
+
+    public getCantidad(){
+        return this.cantidad;
+    }
+
+    public setCantidad(cantidad:number){
+        this.cantidad = cantidad;
+    }
+
+
 }
