@@ -59,7 +59,8 @@ export class MaxHeap {
         this.n--;
         //console.log("Este es el que después es el máximo supuesto " + this.heap[1])
         this.sink(1); // Procedimiento que reestructura el árbol AVL*/
-        return "Realizando " //+ max.show();
+        return `Comprando ${max.getCantidad()} acciones de ${max.getNombre()} a un precio de: ${max.getPrecio()}`
+        
     }
 
     private sink(i: number): void {
