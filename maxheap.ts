@@ -51,15 +51,16 @@ export class MaxHeap {
         this.heap = newHeap;
     }
 
-    public getMax(): string {
+    public buyMax(): void {
         let max: Accion = this.heap[1];
         //console.log("El this.heap[this.n, es: " + this.heap[this.n])
         this.heap[1] = this.heap[this.n];
-        this.heap[this.n] = new Accion("Completada",0,0);
+        this.heap[this.n] = new Accion("Completada",-1,0);
         this.n--;
-        //console.log("Este es el que después es el máximo supuesto " + this.heap[1])
+        
         this.sink(1); // Procedimiento que reestructura el árbol AVL*/
-        return `Comprando ${max.getCantidad()} acciones de ${max.getNombre()} a un precio de: ${max.getPrecio()}`
+        
+        //return `Comprando ${max.getCantidad()} accion(es) de ${max.getNombre()} a un precio de: ${max.getPrecio()}`
         
     }
 
@@ -79,20 +80,3 @@ export class MaxHeap {
         }
     }
 }
-
-// main
-//let myHeap: MaxHeap = new MaxHeap(7);
-/*
-myHeap.insert(4);
-myHeap.insert(5);
-myHeap.insert(2);
-myHeap.insert(6);
-myHeap.insert(1);
-myHeap.insert(3);
-myHeap.insert(9);
-*/
-/*
-console.log("El número más grande es " + myHeap.getMax());
-console.log("El número más grande es " + myHeap.getMax());
-console.log("El número más grande es " + myHeap.getMax());
-*/

@@ -54,15 +54,16 @@ export class MinHeap {
         this.heap = newHeap;
     }
 
-    public doNext(): string {
-        let max: Accion = this.heap[1];
+    public sellMin(): void {
+        let min: Accion = this.heap[1];
         
         this.heap[1] = this.heap[this.n];
-        this.heap[this.n] = new Accion("Completada",0,0);
+        this.heap[this.n] = new Accion("Completada", 1000,0);
         this.n--;
         
-        this.sink(1); 
-        return `Vendiendo ${max.getCantidad()} acciones de ${max.getNombre()} a un precio de: ${max.getPrecio()}`
+        this.sink(1);
+        
+        //return `Vendiendo ${max.getCantidad()} accion(es) de ${max.getNombre()} a un precio de: ${max.getPrecio()}`
     
     }
     /*
